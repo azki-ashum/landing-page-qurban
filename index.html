@@ -1,0 +1,1106 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Qurban For Humanity 2026 - Asar Humanity</title>
+    <meta
+      name="description"
+      content="Qurban For Humanity, Ibadah Mudah, Amanah dan Tepat Sasaran"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1A4B3C",
+              "primary-dark": "#12362b",
+              accent: "#5DB135",
+              gold: "#C49A20",
+              "gold-dark": "#a8820f",
+              "soft-green": "#4A9B3C",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+              serif: ["Georgia", "serif"],
+            },
+            maxWidth: {
+              mobile: "480px",
+            },
+          },
+        },
+      };
+    </script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+      details > summary {
+        list-style: none;
+        cursor: pointer;
+      }
+      details > summary::-webkit-details-marker {
+        display: none;
+      }
+      .loading {
+        opacity: 0.7;
+        pointer-events: none;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Mobile shell wrapper */
+      .mobile-shell {
+        max-width: 480px;
+        margin: 0 auto;
+        min-height: 100vh;
+        position: relative;
+        background: #f8f9f8;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+      }
+
+      @media (min-width: 481px) {
+        body {
+          background: #e8e8e8;
+        }
+      }
+
+      /* Bottom nav safe area */
+      .pb-safe {
+        padding-bottom: 72px;
+      }
+
+      /* Card hover */
+      .card-hover {
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .card-hover:active {
+        transform: scale(0.98);
+      }
+
+      /* Swiper-like horizontal scroll */
+      .scroll-snap-x {
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+      .scroll-snap-x > * {
+        scroll-snap-align: start;
+      }
+
+      /* Hide scrollbar */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* Hamburger toggle */
+      #mobileMenu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      #mobileMenu.open {
+        max-height: 400px;
+      }
+
+      /* Skeleton loading */
+      .skeleton {
+        background: linear-gradient(
+          90deg,
+          #f0f0f0 25%,
+          #e0e0e0 50%,
+          #f0f0f0 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+        border-radius: 8px;
+      }
+      @keyframes shimmer {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-[#e8e8e8] text-gray-800 font-sans">
+    <div class="mobile-shell pb-safe">
+      <!-- ===== HEADER ===== -->
+      <header class="bg-white sticky top-0 z-50 shadow-sm">
+        <div class="flex items-center justify-between px-4 py-3">
+          <img
+            src="./assets/logo.png"
+            alt="Asar Humanity Logo"
+            class="h-8 object-contain"
+          />
+          <div class="flex items-center gap-3">
+            <a
+              id="headerWaLink"
+              href="#"
+              target="_blank"
+              class="text-primary text-lg"
+            >
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <button
+              id="menuToggle"
+              class="text-gray-700 text-xl focus:outline-none"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+        <!-- Mobile dropdown menu -->
+        <nav id="mobileMenu" class="bg-white border-t border-gray-100 px-4">
+          <a
+            href="#hero"
+            class="block py-3 text-sm font-semibold text-gray-700 border-b border-gray-50"
+            >Beranda</a
+          >
+          <a
+            href="#pilih-qurban"
+            class="block py-3 text-sm font-semibold text-gray-700 border-b border-gray-50"
+            >Pilih Qurban</a
+          >
+          <a
+            href="#sebaran"
+            class="block py-3 text-sm font-semibold text-gray-700 border-b border-gray-50"
+            >Wilayah Distribusi</a
+          >
+          <a
+            href="#testimoni"
+            class="block py-3 text-sm font-semibold text-gray-700 border-b border-gray-50"
+            >Testimoni</a
+          >
+          <a
+            href="#faq"
+            class="block py-3 text-sm font-semibold text-gray-700 border-b border-gray-50"
+            >FAQ</a
+          >
+          <a
+            href="#kontak"
+            class="block py-3 text-sm font-semibold text-primary"
+            >Hubungi Kami</a
+          >
+        </nav>
+      </header>
+
+      <!-- ===== HERO SECTION ===== -->
+      <section id="hero" class="relative">
+        <div
+          class="relative overflow-hidden rounded-b-2xl"
+          style="background: linear-gradient(135deg, #d9f0c8 0%, #b8e0a0 100%)"
+        >
+          <div class="px-5 pt-6 pb-8 text-center">
+            <img
+              id="heroImage"
+              src="./assets/logo.png"
+              alt="Maskot"
+              class="mx-auto mb-4 h-28 w-28 object-contain"
+            />
+            <h1
+              id="heroTitle"
+              class="text-2xl font-bold font-serif text-primary leading-tight mb-2"
+            >
+              &nbsp;
+            </h1>
+            <p
+              id="heroSubtitle"
+              class="text-sm text-gray-600 mb-5 leading-relaxed"
+            >
+              &nbsp;
+            </p>
+
+            <a
+              id="heroCtaBtn"
+              href="#"
+              target="_blank"
+              class="inline-block bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-full text-sm transition"
+            >
+              <i class="fas fa-hand-holding-heart mr-1"></i>
+              <span id="heroCtaText">Qurban Sekarang</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Rekap stats cards -->
+        <div class="px-4 -mt-1 pt-5 pb-2">
+          <h2 id="rekapTitle" class="text-lg font-bold text-primary mb-3 px-1">
+            Rekap Qurban
+          </h2>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-white rounded-xl p-4 shadow-sm text-center">
+              <i class="fas fa-map text-primary text-xl mb-2"></i>
+              <h3 id="statKK" class="text-xl font-bold text-gray-800">-</h3>
+              <p class="text-xs text-gray-500 mt-1">KK Tersalurkan</p>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm text-center">
+              <i class="fas fa-user-friends text-primary text-xl mb-2"></i>
+              <h3 id="statPeternak" class="text-xl font-bold text-gray-800">
+                -
+              </h3>
+              <p class="text-xs text-gray-500 mt-1">Peternak Lokal</p>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm text-center">
+              <i class="fas fa-dove text-primary text-xl mb-2"></i>
+              <h3 id="statKambing" class="text-xl font-bold text-gray-800">
+                -
+              </h3>
+              <p class="text-xs text-gray-500 mt-1">Ekor Kambing</p>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm text-center">
+              <i class="fas fa-horse text-primary text-xl mb-2"></i>
+              <h3 id="statSapi" class="text-xl font-bold text-gray-800">-</h3>
+              <p class="text-xs text-gray-500 mt-1">Ekor Sapi</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PILIH HEWAN QURBAN (Horizontal Slider) ===== -->
+      <section id="pilih-qurban" class="py-8">
+        <div class="px-4">
+          <h2 class="text-lg font-bold text-primary mb-1">
+            Pilih Hewan Qurban
+          </h2>
+          <p class="text-xs text-gray-500 mb-5">Qurban 2026 / 1447 H</p>
+        </div>
+
+        <div
+          id="packagesSlider"
+          class="flex overflow-x-auto gap-4 no-scrollbar scroll-snap-x px-4"
+        >
+          <!-- Skeleton loaders -->
+          <div class="min-w-[300px] max-w-[320px] flex-shrink-0">
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+              <div class="skeleton w-full h-44"></div>
+              <div class="p-4 space-y-3">
+                <div class="skeleton h-6 w-2/3"></div>
+                <div class="skeleton h-4 w-1/2"></div>
+                <div class="skeleton h-4 w-full"></div>
+                <div class="skeleton h-10 w-full rounded-lg"></div>
+              </div>
+            </div>
+          </div>
+          <div class="min-w-[300px] max-w-[320px] flex-shrink-0">
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+              <div class="skeleton w-full h-44"></div>
+              <div class="p-4 space-y-3">
+                <div class="skeleton h-6 w-2/3"></div>
+                <div class="skeleton h-4 w-1/2"></div>
+                <div class="skeleton h-4 w-full"></div>
+                <div class="skeleton h-10 w-full rounded-lg"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PETA SEBARAN ===== -->
+      <section id="sebaran" class="bg-white px-4 py-8">
+        <h2 class="text-lg font-bold text-accent mb-1">Peta Sebaran Wilayah</h2>
+        <p id="sebaranYear" class="text-xs text-gray-500 mb-5"></p>
+
+        <!-- Stats row -->
+        <div class="grid grid-cols-2 gap-3 mb-5">
+          <div class="bg-gray-50 rounded-lg p-3 flex items-center gap-2">
+            <i class="fas fa-horse text-primary"></i>
+            <div>
+              <span id="sebaranHewan" class="text-lg font-bold text-gray-800"
+                >-</span
+              >
+              <p class="text-[10px] text-gray-500 leading-tight">
+                Hewan Qurban
+              </p>
+            </div>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-3 flex items-center gap-2">
+            <i class="fas fa-globe text-primary"></i>
+            <div>
+              <span id="sebaranNegara" class="text-lg font-bold text-gray-800"
+                >-</span
+              >
+              <p class="text-[10px] text-gray-500 leading-tight">Negara</p>
+            </div>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-3 flex items-center gap-2">
+            <i class="fas fa-users text-primary"></i>
+            <div>
+              <span id="sebaranPequrban" class="text-lg font-bold text-gray-800"
+                >-</span
+              >
+              <p class="text-[10px] text-gray-500 leading-tight">Pequrban</p>
+            </div>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-3 flex items-center gap-2">
+            <i class="fas fa-map-marked-alt text-primary"></i>
+            <div>
+              <span id="sebaranProvinsi" class="text-lg font-bold text-gray-800"
+                >-</span
+              >
+              <p class="text-[10px] text-gray-500 leading-tight">Provinsi</p>
+            </div>
+          </div>
+        </div>
+
+        <img
+          id="mapImage"
+          src="https://placehold.co/480x240?text=Peta+Dunia"
+          alt="Peta Sebaran Global"
+          class="w-full rounded-xl mb-6"
+        />
+
+        <!-- Distribusi Indonesia (rendered from API distribution_areas) -->
+        <div id="distributionAreas" class="bg-gray-50 rounded-xl p-4 mb-4">
+          <div class="flex items-center gap-3 mb-4">
+            <div
+              class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center"
+            >
+              <i class="fas fa-map-marked-alt text-primary text-xl"></i>
+            </div>
+            <h3 class="text-base font-bold text-primary">
+              Wilayah Distribusi SBQ
+            </h3>
+          </div>
+          <div
+            id="distributionGrid"
+            class="grid grid-cols-2 gap-x-4 gap-y-3 text-xs text-gray-700"
+          >
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== TESTIMONI ===== -->
+      <section id="testimoni" class="px-4 py-8">
+        <h2 class="text-lg font-bold text-gray-800 mb-5">
+          <span class="border-l-4 border-gold pl-3">Kata Mereka</span>
+        </h2>
+
+        <div
+          id="testimonialSlider"
+          class="flex overflow-x-auto gap-3 no-scrollbar scroll-snap-x -mx-4 px-4"
+        >
+          <!-- Rendered by JS -->
+        </div>
+      </section>
+
+      <!-- ===== GALERI ===== -->
+      <section id="galeriSection" class="px-4 pb-6" style="display: none">
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+          <img
+            id="galleryImage"
+            src=""
+            alt="Galeri"
+            class="w-full object-cover"
+          />
+        </div>
+      </section>
+
+      <!-- ===== VIDEO QURBAN ===== -->
+      <section id="videoSection" class="px-4 pb-8" style="display: none">
+        <div class="mb-4 text-center">
+          <h2
+            id="videoTitle"
+            class="text-2xl font-bold font-serif text-primary mb-2"
+          ></h2>
+          <p
+            id="videoDescription"
+            class="text-sm text-gray-600 mb-4 leading-relaxed"
+          ></p>
+        </div>
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+          <div class="relative pb-[56.25%] h-0">
+            <iframe
+              id="videoIframe"
+              src=""
+              class="absolute top-0 left-0 w-full h-full"
+              frameborder="0"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div class="px-4 py-3 border-t border-gray-100">
+            <p
+              id="videoCaption"
+              class="text-xs font-semibold text-gray-800"
+            ></p>
+            <p
+              id="videoSubcaption"
+              class="text-[10px] text-gray-400 mt-0.5"
+            ></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FAQ ===== -->
+      <section id="faq" class="bg-white px-4 py-8">
+        <h2 class="text-lg font-bold text-primary mb-5">
+          Hal Yang Sering Ditanyakan
+        </h2>
+
+        <div id="faqContainer" class="space-y-3">
+          <!-- Rendered by JS -->
+        </div>
+      </section>
+
+      <!-- ===== KONTAK FORM ===== -->
+      <section id="kontak" class="bg-[#0F2E20] px-4 py-8 text-white">
+        <h2 class="text-xl font-bold text-gold mb-1">Hubungi Kami</h2>
+        <p class="text-xs text-gray-400 mb-5">Kami siap membantu Anda</p>
+
+        <form id="qurbanForm" class="space-y-3 mb-8">
+          <div class="grid grid-cols-2 gap-3">
+            <input
+              type="text"
+              name="first_name"
+              placeholder="Nama Depan"
+              inputmode="text"
+              pattern="[A-Za-z\s]+"
+              required
+              class="w-full p-3 rounded-lg bg-[#1a4a2e] border border-transparent focus:outline-none focus:border-gold text-white placeholder-gray-400 text-xs"
+            />
+            <input
+              type="text"
+              name="last_name"
+              placeholder="Nama Belakang"
+              inputmode="text"
+              pattern="[A-Za-z\s]+"
+              required
+              class="w-full p-3 rounded-lg bg-[#1a4a2e] border border-transparent focus:outline-none focus:border-gold text-white placeholder-gray-400 text-xs"
+            />
+          </div>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+            class="w-full p-3 rounded-lg bg-[#1a4a2e] border border-transparent focus:outline-none focus:border-gold text-white placeholder-gray-400 text-xs"
+          />
+          <input
+            type="tel"
+            name="phone"
+            placeholder="No. Telepon"
+            inputmode="numeric"
+            pattern="[0-9]+"
+            minlength="10"
+            maxlength="13"
+            required
+            class="w-full p-3 rounded-lg bg-[#1a4a2e] border border-transparent focus:outline-none focus:border-gold text-white placeholder-gray-400 text-xs"
+          />
+          <textarea
+            name="message"
+            rows="4"
+            placeholder="Pesan"
+            class="w-full p-3 rounded-lg bg-[#1a4a2e] border border-transparent focus:outline-none focus:border-gold text-white placeholder-gray-400 text-xs"
+          ></textarea>
+          <button
+            type="submit"
+            id="btnSubmit"
+            class="w-full bg-gold hover:bg-gold-dark text-white font-bold py-3 rounded-lg transition text-sm"
+          >
+            KIRIM
+          </button>
+        </form>
+
+        <div class="border-t border-white/10 pt-6">
+          <h3 class="text-sm font-bold text-gold mb-3">Informasi Kontak</h3>
+          <div id="contactAddress" class="text-xs text-gray-300 mb-3"></div>
+          <p id="contactPhone" class="text-xs text-gray-300 mb-1"></p>
+          <p id="contactHours" class="text-xs text-gray-300"></p>
+
+          <div id="socialLinks" class="flex gap-4 mt-4">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FOOTER ===== -->
+      <footer class="bg-primary px-4 py-8 text-white">
+        <div class="mb-6">
+          <img src="./assets/logo.png" alt="Asar Humanity" class="h-8 mb-4" />
+          <p class="text-xs text-gray-300 leading-relaxed mb-3">
+            ASAR Humanity adalah Lembaga Amil Zakat Nasional yang berbasis
+            kemanusiaan yang dikelola secara professional.
+          </p>
+          <p class="text-[10px] text-gray-400 italic">
+            <span class="font-bold not-italic text-gray-300">DISCLAIMER!</span>
+            Seluruh dana yang disalurkan melalui ASAR Humanity merupakan dana
+            yang dimiliki secara sah oleh donatur, berasal dari sumber yang
+            halal, serta tidak berkaitan dengan praktik pencucian uang (money
+            laundering), pendanaan terorisme, maupun aktivitas melanggar hukum
+            lainnya.
+          </p>
+        </div>
+
+        <div class="border-t border-white/10 pt-4">
+          <div class="flex items-center justify-between">
+            <p class="text-[10px] text-gray-400">&copy; 2026 Asar Humanity</p>
+            <div id="footerSocials" class="flex gap-2">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <!-- ===== BOTTOM NAVIGATION (Mobile) ===== -->
+      <nav
+        class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-white border-t border-gray-200 z-50 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]"
+      >
+        <div class="flex justify-around items-center py-2">
+          <a
+            href="#hero"
+            class="flex flex-col items-center text-primary py-1 px-3"
+          >
+            <i class="fas fa-home text-lg"></i>
+            <span class="text-[10px] font-semibold mt-0.5">Beranda</span>
+          </a>
+          <a
+            href="#pilih-qurban"
+            class="flex flex-col items-center text-gray-400 hover:text-primary py-1 px-3 transition"
+          >
+            <i class="fas fa-hand-holding-heart text-lg"></i>
+            <span class="text-[10px] font-medium mt-0.5">Qurban</span>
+          </a>
+          <a
+            id="bottomNavWa"
+            href="#"
+            target="_blank"
+            class="flex flex-col items-center bg-primary text-white rounded-full w-14 h-14 -mt-5 justify-center shadow-lg hover:bg-primary-dark transition"
+          >
+            <i class="fab fa-whatsapp text-2xl"></i>
+          </a>
+          <a
+            href="#sebaran"
+            class="flex flex-col items-center text-gray-400 hover:text-primary py-1 px-3 transition"
+          >
+            <i class="fas fa-map-marked-alt text-lg"></i>
+            <span class="text-[10px] font-medium mt-0.5">Sebaran</span>
+          </a>
+          <a
+            href="#kontak"
+            class="flex flex-col items-center text-gray-400 hover:text-primary py-1 px-3 transition"
+          >
+            <i class="fas fa-user text-lg"></i>
+            <span class="text-[10px] font-medium mt-0.5">Kontak</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+    <!-- end mobile-shell -->
+
+    <script>
+      // ============================================================
+      // CONFIG — Ganti BASE_URL sesuai environment
+      // ============================================================
+      // Local  : http://127.0.0.1:8001
+      // Dev    : https://dev.donation.asarhumanity.org
+      // Main   : https://donasi.asarhumanity.org
+      const BASE_URL = "http://127.0.0.1:8001";
+      const API_URL = BASE_URL + "/api/qurbah-landing/complete";
+
+      // ============================================================
+      // HELPERS
+      // ============================================================
+      function fmt(n) {
+        if (!n && n !== 0) return "-";
+        return Number(n).toLocaleString("id-ID");
+      }
+
+      function waUrl(number, text) {
+        let url = "https://wa.me/" + (number || "6281282002018");
+        if (text) url += "?text=" + encodeURIComponent(text);
+        return url;
+      }
+
+      function escapeHtml(str) {
+        if (!str) return "";
+        const div = document.createElement("div");
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      function getInitials(name) {
+        return name
+          .split(" ")
+          .map((w) => w[0])
+          .join("")
+          .toUpperCase()
+          .substring(0, 2);
+      }
+
+      // ============================================================
+      // MOBILE MENU
+      // ============================================================
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      menuToggle.addEventListener("click", () =>
+        mobileMenu.classList.toggle("open"),
+      );
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () =>
+          mobileMenu.classList.remove("open"),
+        );
+      });
+
+      // ============================================================
+      // INPUT VALIDATION
+      // ============================================================
+      const phoneInput = document.querySelector('input[name="phone"]');
+      phoneInput.addEventListener("input", (e) => {
+        e.target.value = e.target.value.replace(/[^0-9]/g, "");
+      });
+      ["first_name", "last_name"].forEach((name) => {
+        const el = document.querySelector('input[name="' + name + '"]');
+        if (el)
+          el.addEventListener("input", (e) => {
+            e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, "");
+          });
+      });
+
+      // ============================================================
+      // FORM SUBMIT (Google Script)
+      // ============================================================
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbwLubVu5KcI9VUwHQhkJWgv_i9E8EBExq4_2OXQpcRmw7aiHq8eQkFEYztY9UpaHpt-/exec";
+      const form = document.forms["qurbanForm"];
+      const btnSubmit = document.getElementById("btnSubmit");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        btnSubmit.innerHTML = "Mengirim...";
+        btnSubmit.disabled = true;
+
+        fetch(scriptURL, {
+          method: "POST",
+          body: new FormData(form),
+          mode: "no-cors",
+        })
+          .then(() => {
+            Swal.fire({
+              title: "Berhasil!",
+              text: "Terima kasih! Data Anda berhasil dikirim.",
+              icon: "success",
+              confirmButtonColor: "#C49A20",
+              confirmButtonText: "OK",
+            }).then(() => {
+              form.reset();
+              btnSubmit.innerHTML = "KIRIM";
+              btnSubmit.disabled = false;
+            });
+          })
+          .catch((error) => {
+            console.error("Error!", error.message);
+            Swal.fire({
+              title: "Oops!",
+              text: "Ada kesalahan. Coba lagi.",
+              icon: "error",
+              confirmButtonColor: "#C49A20",
+              confirmButtonText: "OK",
+            }).then(() => {
+              btnSubmit.innerHTML = "KIRIM";
+              btnSubmit.disabled = false;
+            });
+          });
+      });
+
+      // ============================================================
+      // FETCH API & RENDER
+      // ============================================================
+      fetch(API_URL)
+        .then((res) => res.json())
+        .then((json) => {
+          if (!json.success) return;
+          const d = json.data;
+          const wa = d.whatsapp_number || "6281282002018";
+
+          // ----- WhatsApp links -----
+          document.getElementById("headerWaLink").href = waUrl(wa);
+          document.getElementById("bottomNavWa").href = waUrl(wa);
+
+          // ----- Hero -----
+          if (d.hero_image_url) {
+            document.getElementById("heroImage").src = d.hero_image_url;
+          }
+          document.getElementById("heroTitle").textContent =
+            d.hero_title || d.title || "";
+          document.getElementById("heroSubtitle").innerHTML = escapeHtml(
+            d.hero_subtitle || d.description || "",
+          );
+          if (d.hero_cta_url) {
+            document.getElementById("heroCtaBtn").href = d.hero_cta_url;
+          }
+          if (d.hero_cta_text) {
+            document.getElementById("heroCtaText").textContent =
+              d.hero_cta_text;
+          }
+
+          // ----- Statistics (Rekap) -----
+          const stats = d.statistics;
+          if (stats) {
+            const year = stats.rekap_year || "";
+            document.getElementById("rekapTitle").textContent =
+              "Rekap Qurban " + year;
+            document.getElementById("statKK").textContent = fmt(
+              stats.kk_tersalurkan,
+            );
+            document.getElementById("statPeternak").textContent = fmt(
+              stats.peternak_lokal,
+            );
+            document.getElementById("statKambing").textContent = fmt(
+              stats.ekor_kambing,
+            );
+            document.getElementById("statSapi").textContent = fmt(
+              stats.ekor_sapi,
+            );
+
+            // Sebaran
+            document.getElementById("sebaranYear").textContent =
+              "Tahun " + (stats.sebaran_year || "");
+            document.getElementById("sebaranHewan").textContent = fmt(
+              stats.total_hewan_qurban,
+            );
+            document.getElementById("sebaranNegara").textContent = fmt(
+              stats.total_negara,
+            );
+            document.getElementById("sebaranPequrban").textContent = fmt(
+              stats.total_pequrban,
+            );
+            document.getElementById("sebaranProvinsi").textContent = fmt(
+              stats.total_provinsi,
+            );
+
+            if (stats.map_image_url) {
+              document.getElementById("mapImage").src = stats.map_image_url;
+            }
+          }
+
+          // ----- Distribution Areas -----
+          if (d.distribution_areas && Array.isArray(d.distribution_areas)) {
+            renderDistributionAreas(d.distribution_areas);
+          }
+
+          // ----- Packages (Slider) -----
+          renderPackages(d.packages || [], wa);
+
+          // ----- Testimonials -----
+          renderTestimonials(d.testimonials || []);
+
+          // ----- Gallery -----
+          if (d.gallery_image_url) {
+            document.getElementById("galeriSection").style.display = "";
+            document.getElementById("galleryImage").src = d.gallery_image_url;
+          }
+
+          // ----- Video -----
+          if (d.video_url) {
+            document.getElementById("videoSection").style.display = "";
+            document.getElementById("videoIframe").src = d.video_url;
+            document.getElementById("videoTitle").textContent =
+              d.video_title || "";
+            document.getElementById("videoDescription").innerHTML = escapeHtml(
+              d.video_description || "",
+            );
+            document.getElementById("videoCaption").textContent =
+              d.video_caption || "";
+            document.getElementById("videoSubcaption").textContent =
+              d.video_subcaption || "";
+          }
+
+          // ----- FAQ -----
+          renderFaqs(d.faqs || []);
+
+          // ----- Contact Info -----
+          if (d.contact_address) {
+            document.getElementById("contactAddress").innerHTML = escapeHtml(
+              d.contact_address,
+            )
+              .split("\n")
+              .map((l) => "<p>" + l + "</p>")
+              .join("");
+          }
+          if (d.contact_phone) {
+            document.getElementById("contactPhone").innerHTML =
+              '<i class="fas fa-phone mr-2"></i> ' +
+              escapeHtml(d.contact_phone);
+          }
+          if (d.contact_hours) {
+            document.getElementById("contactHours").innerHTML =
+              '<i class="fas fa-clock mr-2"></i> ' +
+              escapeHtml(d.contact_hours);
+          }
+
+          // ----- Social Media -----
+          renderSocials(d);
+        })
+        .catch((err) => {
+          console.error("API Error:", err);
+        });
+
+      // ============================================================
+      // RENDERERS
+      // ============================================================
+
+      function renderPackages(packages, wa) {
+        const slider = document.getElementById("packagesSlider");
+        if (!packages.length) {
+          slider.innerHTML =
+            '<p class="text-gray-400 text-sm px-4">Belum ada paket.</p>';
+          return;
+        }
+
+        const badgeColors = {
+          PROMO: "bg-gold",
+          "BEST SELLER": "bg-accent",
+        };
+
+        slider.innerHTML = packages
+          .map((pkg) => {
+            const imgSrc =
+              pkg.image_url ||
+              "https://placehold.co/480x240?text=" +
+                encodeURIComponent(pkg.name);
+            const badgeClass =
+              badgeColors[pkg.badge_label?.toUpperCase()] || "bg-primary";
+            const ctaUrl =
+              pkg.cta_url ||
+              waUrl(wa, pkg.whatsapp_text || "Saya ingin qurban " + pkg.name);
+
+            let priceHtml = "";
+            if (pkg.original_price) {
+              priceHtml +=
+                '<span class="text-sm text-red-400 line-through">Rp ' +
+                fmt(pkg.original_price) +
+                "</span> ";
+            }
+            priceHtml +=
+              '<span class="text-xl font-bold text-primary">Rp ' +
+              fmt(pkg.price) +
+              "</span>";
+
+            let featuresHtml = "";
+            if (pkg.features && pkg.features.length) {
+              featuresHtml =
+                '<ul class="text-xs text-soft-green space-y-2 mb-4">' +
+                pkg.features
+                  .map(
+                    (f) =>
+                      '<li><i class="fas fa-check-circle mr-1.5"></i> ' +
+                      escapeHtml(f) +
+                      "</li>",
+                  )
+                  .join("") +
+                "</ul>";
+            }
+
+            return (
+              '<div class="min-w-[300px] max-w-[320px] flex-shrink-0">' +
+              '  <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover">' +
+              '    <div class="relative">' +
+              '      <img src="' +
+              imgSrc +
+              '" alt="' +
+              escapeHtml(pkg.name) +
+              '" class="w-full h-44 object-cover" />' +
+              (pkg.badge_label
+                ? '      <span class="absolute top-3 left-3 ' +
+                  badgeClass +
+                  ' text-white text-xs font-bold px-3 py-1 rounded-full">' +
+                  escapeHtml(pkg.badge_label) +
+                  "</span>"
+                : "") +
+              "    </div>" +
+              '    <div class="p-4">' +
+              '      <div class="flex items-baseline gap-2 mb-1">' +
+              priceHtml +
+              "</div>" +
+              (pkg.dp_amount
+                ? '<p class="text-xs text-gold font-semibold mb-1">' +
+                  escapeHtml(pkg.dp_amount) +
+                  "</p>"
+                : "") +
+              (pkg.weight_description
+                ? '<p class="text-xs text-gray-500 mb-3">' +
+                  escapeHtml(pkg.weight_description) +
+                  "</p>"
+                : "") +
+              featuresHtml +
+              '      <a href="' +
+              ctaUrl +
+              '" target="_blank" class="block bg-primary hover:bg-primary-dark text-white font-semibold py-3 rounded-lg text-center text-sm transition">QURBAN SEKARANG</a>' +
+              '      <a href="' +
+              waUrl(wa) +
+              '" target="_blank" class="block text-accent hover:underline font-semibold text-center text-xs mt-2 py-1"><i class="fab fa-whatsapp mr-1"></i> Chat dengan CS</a>' +
+              "    </div>" +
+              "  </div>" +
+              "</div>"
+            );
+          })
+          .join("");
+      }
+
+      function renderTestimonials(items) {
+        const container = document.getElementById("testimonialSlider");
+        if (!items.length) {
+          container.innerHTML = "";
+          return;
+        }
+
+        const colors = ["primary", "accent", "gold", "soft-green"];
+
+        container.innerHTML = items
+          .map((t, i) => {
+            const color = colors[i % colors.length];
+            const initials = getInitials(t.name);
+            const photoHtml = t.photo_url
+              ? '<img src="' +
+                t.photo_url +
+                '" class="w-10 h-10 rounded-full object-cover" alt="' +
+                escapeHtml(t.name) +
+                '">'
+              : '<div class="w-10 h-10 bg-' +
+                color +
+                "/10 rounded-full flex items-center justify-center text-" +
+                color +
+                ' font-bold text-sm">' +
+                initials +
+                "</div>";
+
+            return (
+              '<div class="bg-white rounded-xl p-4 shadow-sm min-w-[280px] max-w-[300px] flex-shrink-0">' +
+              '  <div class="flex items-center gap-3 mb-3">' +
+              photoHtml +
+              "    <div>" +
+              '      <h4 class="font-bold text-sm text-gray-800">' +
+              escapeHtml(t.name) +
+              "</h4>" +
+              (t.role
+                ? '<p class="text-[10px] text-gray-400">' +
+                  escapeHtml(t.role) +
+                  "</p>"
+                : "") +
+              "    </div>" +
+              "  </div>" +
+              '  <p class="text-xs text-gray-600 leading-relaxed">"' +
+              escapeHtml(t.content) +
+              '"</p>' +
+              "</div>"
+            );
+          })
+          .join("");
+      }
+
+      function renderFaqs(items) {
+        const container = document.getElementById("faqContainer");
+        if (!items.length) {
+          container.innerHTML =
+            '<p class="text-gray-400 text-sm">Belum ada FAQ.</p>';
+          return;
+        }
+
+        container.innerHTML = items
+          .map(
+            (faq) =>
+              '<details class="bg-gray-50 rounded-xl overflow-hidden group">' +
+              '  <summary class="font-semibold text-sm text-gray-800 flex justify-between items-center p-4 outline-none">' +
+              escapeHtml(faq.question) +
+              '    <span class="text-primary text-lg group-open:rotate-45 transition-transform duration-200">+</span>' +
+              "  </summary>" +
+              '  <div class="px-4 pb-4 text-gray-600 text-xs leading-relaxed">' +
+              escapeHtml(faq.answer) +
+              "  </div>" +
+              "</details>",
+          )
+          .join("");
+      }
+
+      function renderDistributionAreas(areas) {
+        const grid = document.getElementById("distributionGrid");
+        if (!areas.length) return;
+
+        grid.innerHTML = areas
+          .map((area) => {
+            const locations = area.locations || [];
+            return (
+              "<div" +
+              (area.col_span === 2 ? ' class="col-span-2"' : "") +
+              ">" +
+              '<p class="font-bold text-primary mb-1">' +
+              escapeHtml(area.region) +
+              "</p>" +
+              '<ul class="space-y-0.5 text-gray-600' +
+              (area.col_span === 2 ? " columns-2" : "") +
+              '">' +
+              locations
+                .map((loc) => "<li>" + escapeHtml(loc) + "</li>")
+                .join("") +
+              "</ul>" +
+              "</div>"
+            );
+          })
+          .join("");
+      }
+
+      function renderSocials(d) {
+        const socials = [];
+        if (d.facebook_url)
+          socials.push({ url: d.facebook_url, icon: "fa-facebook" });
+        if (d.instagram_url)
+          socials.push({ url: d.instagram_url, icon: "fa-instagram" });
+        if (d.youtube_url)
+          socials.push({ url: d.youtube_url, icon: "fa-youtube" });
+        if (d.tiktok_url)
+          socials.push({ url: d.tiktok_url, icon: "fa-tiktok" });
+
+        // Contact section socials
+        document.getElementById("socialLinks").innerHTML = socials
+          .map(
+            (s) =>
+              '<a href="' +
+              s.url +
+              '" target="_blank" class="text-gray-300 hover:text-gold text-lg"><i class="fab ' +
+              s.icon +
+              '"></i></a>',
+          )
+          .join("");
+
+        // Footer socials
+        document.getElementById("footerSocials").innerHTML = socials
+          .map(
+            (s) =>
+              '<a href="' +
+              s.url +
+              '" target="_blank" class="bg-white/10 w-7 h-7 rounded-full flex items-center justify-center hover:bg-white/20 text-xs"><i class="fab ' +
+              s.icon +
+              '"></i></a>',
+          )
+          .join("");
+      }
+    </script>
+  </body>
+</html>
