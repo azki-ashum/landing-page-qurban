@@ -239,10 +239,15 @@
       <!-- ===== HERO SECTION ===== -->
       <section id="hero" class="relative">
         <div
-          class="relative overflow-hidden rounded-b-2xl"
-          style="background: linear-gradient(135deg, #d9f0c8 0%, #b8e0a0 100%)"
+          class="relative overflow-hidden rounded-b-2xl w-full aspect-[480/308] flex flex-col items-center justify-end pb-9"
+          style="
+            background: url(&quot;./assets/qurban-bg.jpeg&quot;) center/cover
+              no-repeat;
+          "
         >
-          <div class="px-5 pt-6 pb-8 text-center">
+          <div class="px-5 text-center">
+            <!-- Logo dan title di-hide, hanya background image yang tampil -->
+            <!--
             <img
               id="heroImage"
               src="./assets/logo.png"
@@ -261,6 +266,7 @@
             >
               &nbsp;
             </div>
+            -->
 
             <a
               id="heroCtaBtn"
@@ -812,13 +818,13 @@
           document.getElementById("bottomNavWa").href = waUrl(wa);
 
           // ----- Hero -----
-          if (d.hero_image_url) {
-            document.getElementById("heroImage").src = d.hero_image_url;
-          }
-          document.getElementById("heroTitle").textContent = d.hero_title || "";
-          // hero_subtitle is CKEditor HTML — render as innerHTML
-          document.getElementById("heroSubtitle").innerHTML =
-            d.hero_subtitle || "";
+          // if (d.hero_image_url) {
+          //   document.getElementById("heroImage").src = d.hero_image_url;
+          // }
+          // document.getElementById("heroTitle").textContent = d.hero_title || "";
+          // // hero_subtitle is CKEditor HTML — render as innerHTML
+          // document.getElementById("heroSubtitle").innerHTML =
+          //   d.hero_subtitle || "";
           if (d.hero_cta_url) {
             document.getElementById("heroCtaBtn").href = d.hero_cta_url;
           }
