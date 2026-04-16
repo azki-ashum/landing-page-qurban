@@ -52,6 +52,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
+
+    <link rel="shortcut icon" href="./assets/favicon.png" />
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <style>
@@ -182,14 +185,14 @@
             class="h-8 object-contain"
           />
           <div class="flex items-center gap-3">
-            <a
+            <!-- <a
               id="headerWaLink"
               href="#"
               target="_blank"
               class="text-primary text-lg"
             >
               <i class="fab fa-whatsapp"></i>
-            </a>
+            </a> -->
             <button
               id="menuToggle"
               class="text-gray-700 text-xl focus:outline-none"
@@ -561,15 +564,18 @@
       </section>
 
       <!-- ===== FOOTER ===== -->
-      <footer class="bg-primary px-4 py-8 text-white">
+      <footer
+        class="px-4 py-8"
+        style="background: linear-gradient(135deg, #d9f0c8 0%, #b8e0a0 100%)"
+      >
         <div class="mb-6">
           <img src="./assets/logo.png" alt="Asar Humanity" class="h-8 mb-4" />
-          <p class="text-xs text-gray-300 leading-relaxed mb-3">
+          <p class="text-xs text-gray-700 leading-relaxed mb-3">
             ASAR Humanity adalah Lembaga Amil Zakat Nasional yang berbasis
             kemanusiaan yang dikelola secara professional.
           </p>
-          <p class="text-[10px] text-gray-400 italic">
-            <span class="font-bold not-italic text-gray-300">DISCLAIMER!</span>
+          <p class="text-[10px] text-gray-600 italic">
+            <span class="font-bold not-italic text-gray-800">DISCLAIMER!</span>
             Seluruh dana yang disalurkan melalui ASAR Humanity merupakan dana
             yang dimiliki secara sah oleh donatur, berasal dari sumber yang
             halal, serta tidak berkaitan dengan praktik pencucian uang (money
@@ -578,9 +584,9 @@
           </p>
         </div>
 
-        <div class="border-t border-white/10 pt-4">
+        <div class="border-t border-gray-400/30 pt-4">
           <div class="flex items-center justify-between">
-            <p class="text-[10px] text-gray-400">&copy; 2026 Asar Humanity</p>
+            <p class="text-[10px] text-gray-600">&copy; 2026 Asar Humanity</p>
             <div id="footerSocials" class="flex gap-2">
               <!-- Rendered by JS -->
             </div>
@@ -802,7 +808,7 @@
           const wa = d.whatsapp_number || "6281282002018";
 
           // ----- WhatsApp links -----
-          document.getElementById("headerWaLink").href = waUrl(wa);
+          // document.getElementById("headerWaLink").href = waUrl(wa);
           document.getElementById("bottomNavWa").href = waUrl(wa);
 
           // ----- Hero -----
@@ -1002,6 +1008,9 @@
                 : "") +
               "    </div>" +
               '    <div class="p-4">' +
+              '      <h3 class="font-bold text-sm text-gray-800 mb-2">' +
+              escapeHtml(pkg.name) +
+              "</h3>" +
               '      <div class="flex items-baseline gap-2 mb-1">' +
               priceHtml +
               "</div>" +
@@ -1081,10 +1090,12 @@
                 : "") +
               "      </div>" +
               "    </div>" +
-              // content is CKEditor HTML — render raw
-              '    <div class="text-xs text-gray-600 leading-relaxed ck-content">' +
+              // content is plain text (no CKEditor)
+              '    <p class="text-xs text-gray-600 leading-tight italic">' +
+              "&quot;" +
               (t.content || "") +
-              "</div>" +
+              "&quot;" +
+              "</p>" +
               "  </div>" +
               "</div>"
             );
