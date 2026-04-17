@@ -48,6 +48,14 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <link rel="shortcut icon" href="./assets/favicon.png" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <style>
       details > summary {
@@ -145,6 +153,24 @@
           background-position: -200% 0;
         }
       }
+
+      /* CKEditor content styling */
+      .ck-content p {
+        margin-bottom: 4px;
+      }
+      .ck-content ul,
+      .ck-content ol {
+        padding-left: 1.2em;
+        margin-bottom: 4px;
+      }
+      .ck-content strong,
+      .ck-content b {
+        font-weight: 600;
+      }
+      .ck-content a {
+        color: #1a4b3c;
+        text-decoration: underline;
+      }
     </style>
   </head>
 
@@ -159,14 +185,14 @@
             class="h-8 object-contain"
           />
           <div class="flex items-center gap-3">
-            <a
+            <!-- <a
               id="headerWaLink"
               href="#"
               target="_blank"
               class="text-primary text-lg"
             >
               <i class="fab fa-whatsapp"></i>
-            </a>
+            </a> -->
             <button
               id="menuToggle"
               class="text-gray-700 text-xl focus:outline-none"
@@ -213,10 +239,15 @@
       <!-- ===== HERO SECTION ===== -->
       <section id="hero" class="relative">
         <div
-          class="relative overflow-hidden rounded-b-2xl"
-          style="background: linear-gradient(135deg, #d9f0c8 0%, #b8e0a0 100%)"
+          class="relative overflow-hidden rounded-b-2xl w-full aspect-[480/308] flex flex-col items-center justify-end pb-9"
+          style="
+            background: url(&quot;./assets/qurban-bg.jpeg&quot;) center/cover
+              no-repeat;
+          "
         >
-          <div class="px-5 pt-6 pb-8 text-center">
+          <div class="px-5 text-center">
+            <!-- Logo dan title di-hide, hanya background image yang tampil -->
+            <!--
             <img
               id="heroImage"
               src="./assets/logo.png"
@@ -229,12 +260,13 @@
             >
               &nbsp;
             </h1>
-            <p
+            <div
               id="heroSubtitle"
-              class="text-sm text-gray-600 mb-5 leading-relaxed"
+              class="text-sm text-gray-600 mb-5 leading-relaxed ck-content"
             >
               &nbsp;
-            </p>
+            </div>
+            -->
 
             <a
               id="heroCtaBtn"
@@ -251,38 +283,42 @@
         <!-- Rekap stats cards -->
         <div class="px-4 -mt-1 pt-5 pb-2">
           <h2 id="rekapTitle" class="text-lg font-bold text-primary mb-3 px-1">
-            Rekap Qurban
+            Rekap Qurban Asar Humanity
           </h2>
           <div class="grid grid-cols-2 gap-3">
             <div class="bg-white rounded-xl p-4 shadow-sm text-center">
-              <i class="fas fa-map text-primary text-xl mb-2"></i>
-              <h3 id="statKK" class="text-xl font-bold text-gray-800">-</h3>
-              <p class="text-xs text-gray-500 mt-1">KK Tersalurkan</p>
+              <div
+                class="flex justify-center items-center gap-1 mb-2 text-xl leading-none"
+              >
+                <i class="fas fa-cow text-primary"></i>
+              </div>
+              <h3 id="statHewan" class="text-xl font-bold text-gray-800">-</h3>
+              <p class="text-xs text-gray-500 mt-1">Hewan Qurban Terkumpul</p>
             </div>
             <div class="bg-white rounded-xl p-4 shadow-sm text-center">
-              <i class="fas fa-user-friends text-primary text-xl mb-2"></i>
-              <h3 id="statPeternak" class="text-xl font-bold text-gray-800">
+              <i class="fas fa-globe text-primary text-xl mb-2"></i>
+              <h3 id="statNegara" class="text-xl font-bold text-gray-800">-</h3>
+              <p class="text-xs text-gray-500 mt-1">Negara</p>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm text-center">
+              <i class="fas fa-map-marker-alt text-primary text-xl mb-2"></i>
+              <h3 id="statProvinsi" class="text-xl font-bold text-gray-800">
                 -
               </h3>
-              <p class="text-xs text-gray-500 mt-1">Peternak Lokal</p>
+              <p class="text-xs text-gray-500 mt-1">Provinsi</p>
             </div>
             <div class="bg-white rounded-xl p-4 shadow-sm text-center">
-              <i class="fas fa-dove text-primary text-xl mb-2"></i>
-              <h3 id="statKambing" class="text-xl font-bold text-gray-800">
+              <i class="fas fa-users text-primary text-xl mb-2"></i>
+              <h3 id="statPenerima" class="text-xl font-bold text-gray-800">
                 -
               </h3>
-              <p class="text-xs text-gray-500 mt-1">Ekor Kambing</p>
-            </div>
-            <div class="bg-white rounded-xl p-4 shadow-sm text-center">
-              <i class="fas fa-horse text-primary text-xl mb-2"></i>
-              <h3 id="statSapi" class="text-xl font-bold text-gray-800">-</h3>
-              <p class="text-xs text-gray-500 mt-1">Ekor Sapi</p>
+              <p class="text-xs text-gray-500 mt-1">Penerima Manfaat</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ===== PILIH HEWAN QURBAN (Horizontal Slider) ===== -->
+      <!-- ===== PILIH HEWAN QURBAN (Swiper Slider) ===== -->
       <section id="pilih-qurban" class="py-8">
         <div class="px-4">
           <h2 class="text-lg font-bold text-primary mb-1">
@@ -291,134 +327,68 @@
           <p class="text-xs text-gray-500 mb-5">Qurban 2026 / 1447 H</p>
         </div>
 
-        <div
-          id="packagesSlider"
-          class="flex overflow-x-auto gap-4 no-scrollbar scroll-snap-x px-4"
-        >
-          <!-- Skeleton loaders -->
-          <div class="min-w-[300px] max-w-[320px] flex-shrink-0">
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-              <div class="skeleton w-full h-44"></div>
-              <div class="p-4 space-y-3">
-                <div class="skeleton h-6 w-2/3"></div>
-                <div class="skeleton h-4 w-1/2"></div>
-                <div class="skeleton h-4 w-full"></div>
-                <div class="skeleton h-10 w-full rounded-lg"></div>
+        <div class="swiper packagesSwiper px-4 pb-8">
+          <div id="packagesSlider" class="swiper-wrapper">
+            <!-- Skeleton loaders -->
+            <div class="swiper-slide">
+              <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="skeleton w-full h-44"></div>
+                <div class="p-4 space-y-3">
+                  <div class="skeleton h-6 w-2/3"></div>
+                  <div class="skeleton h-4 w-1/2"></div>
+                  <div class="skeleton h-4 w-full"></div>
+                  <div class="skeleton h-10 w-full rounded-lg"></div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="skeleton w-full h-44"></div>
+                <div class="p-4 space-y-3">
+                  <div class="skeleton h-6 w-2/3"></div>
+                  <div class="skeleton h-4 w-1/2"></div>
+                  <div class="skeleton h-4 w-full"></div>
+                  <div class="skeleton h-10 w-full rounded-lg"></div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="min-w-[300px] max-w-[320px] flex-shrink-0">
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-              <div class="skeleton w-full h-44"></div>
-              <div class="p-4 space-y-3">
-                <div class="skeleton h-6 w-2/3"></div>
-                <div class="skeleton h-4 w-1/2"></div>
-                <div class="skeleton h-4 w-full"></div>
-                <div class="skeleton h-10 w-full rounded-lg"></div>
-              </div>
-            </div>
-          </div>
+          <div class="swiper-pagination"></div>
         </div>
       </section>
 
       <!-- ===== PETA SEBARAN ===== -->
       <section id="sebaran" class="bg-white px-4 py-8">
-        <h2 class="text-lg font-bold text-accent mb-1">Peta Sebaran Wilayah</h2>
-        <p id="sebaranYear" class="text-xs text-gray-500 mb-5"></p>
-
-        <!-- Stats row -->
-        <div class="grid grid-cols-2 gap-3 mb-5">
-          <div class="bg-gray-50 rounded-lg p-3 flex items-center gap-2">
-            <i class="fas fa-horse text-primary"></i>
-            <div>
-              <span id="sebaranHewan" class="text-lg font-bold text-gray-800"
-                >-</span
-              >
-              <p class="text-[10px] text-gray-500 leading-tight">
-                Hewan Qurban
-              </p>
-            </div>
-          </div>
-          <div class="bg-gray-50 rounded-lg p-3 flex items-center gap-2">
-            <i class="fas fa-globe text-primary"></i>
-            <div>
-              <span id="sebaranNegara" class="text-lg font-bold text-gray-800"
-                >-</span
-              >
-              <p class="text-[10px] text-gray-500 leading-tight">Negara</p>
-            </div>
-          </div>
-          <div class="bg-gray-50 rounded-lg p-3 flex items-center gap-2">
-            <i class="fas fa-users text-primary"></i>
-            <div>
-              <span id="sebaranPequrban" class="text-lg font-bold text-gray-800"
-                >-</span
-              >
-              <p class="text-[10px] text-gray-500 leading-tight">Pequrban</p>
-            </div>
-          </div>
-          <div class="bg-gray-50 rounded-lg p-3 flex items-center gap-2">
-            <i class="fas fa-map-marked-alt text-primary"></i>
-            <div>
-              <span id="sebaranProvinsi" class="text-lg font-bold text-gray-800"
-                >-</span
-              >
-              <p class="text-[10px] text-gray-500 leading-tight">Provinsi</p>
-            </div>
-          </div>
-        </div>
+        <h2 class="text-lg font-bold text-accent mb-4">Peta Sebaran Wilayah</h2>
 
         <img
           id="mapImage"
           src="https://placehold.co/480x240?text=Peta+Dunia"
           alt="Peta Sebaran Global"
-          class="w-full rounded-xl mb-6"
+          class="w-full rounded-xl"
         />
-
-        <!-- Distribusi Indonesia (rendered from API distribution_areas) -->
-        <div id="distributionAreas" class="bg-gray-50 rounded-xl p-4 mb-4">
-          <div class="flex items-center gap-3 mb-4">
-            <div
-              class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center"
-            >
-              <i class="fas fa-map-marked-alt text-primary text-xl"></i>
-            </div>
-            <h3 class="text-base font-bold text-primary">
-              Wilayah Distribusi SBQ
-            </h3>
-          </div>
-          <div
-            id="distributionGrid"
-            class="grid grid-cols-2 gap-x-4 gap-y-3 text-xs text-gray-700"
-          >
-            <!-- Rendered by JS -->
-          </div>
-        </div>
       </section>
 
       <!-- ===== TESTIMONI ===== -->
-      <section id="testimoni" class="px-4 py-8">
-        <h2 class="text-lg font-bold text-gray-800 mb-5">
+      <section id="testimoni" class="py-8">
+        <h2 class="text-lg font-bold text-gray-800 px-4 mb-5">
           <span class="border-l-4 border-gold pl-3">Kata Mereka</span>
         </h2>
 
-        <div
-          id="testimonialSlider"
-          class="flex overflow-x-auto gap-3 no-scrollbar scroll-snap-x -mx-4 px-4"
-        >
-          <!-- Rendered by JS -->
+        <div class="swiper testimoniSwiper px-4 pb-8">
+          <div id="testimonialSlider" class="swiper-wrapper"></div>
+          <div class="swiper-pagination"></div>
         </div>
       </section>
 
-      <!-- ===== GALERI ===== -->
-      <section id="galeriSection" class="px-4 pb-6" style="display: none">
-        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-          <img
-            id="galleryImage"
-            src=""
-            alt="Galeri"
-            class="w-full object-cover"
-          />
+      <!-- ===== GALERI (Swiper Multi-Image) ===== -->
+      <section id="galeriSection" class="py-4" style="display: none">
+        <h2 class="text-lg font-bold text-gray-800 px-4 mb-3">
+          <span class="border-l-4 border-accent pl-3">Galeri Qurban</span>
+        </h2>
+
+        <div class="swiper gallerySwiper px-4 pb-4">
+          <div id="gallerySlider" class="swiper-wrapper"></div>
         </div>
       </section>
 
@@ -429,10 +399,10 @@
             id="videoTitle"
             class="text-2xl font-bold font-serif text-primary mb-2"
           ></h2>
-          <p
+          <div
             id="videoDescription"
-            class="text-sm text-gray-600 mb-4 leading-relaxed"
-          ></p>
+            class="text-sm text-gray-600 mb-4 leading-relaxed ck-content"
+          ></div>
         </div>
         <div class="bg-white rounded-xl shadow-sm overflow-hidden">
           <div class="relative pb-[56.25%] h-0">
@@ -541,15 +511,18 @@
       </section>
 
       <!-- ===== FOOTER ===== -->
-      <footer class="bg-primary px-4 py-8 text-white">
+      <footer
+        class="px-4 py-8"
+        style="background: linear-gradient(135deg, #d9f0c8 0%, #b8e0a0 100%)"
+      >
         <div class="mb-6">
           <img src="./assets/logo.png" alt="Asar Humanity" class="h-8 mb-4" />
-          <p class="text-xs text-gray-300 leading-relaxed mb-3">
+          <p class="text-xs text-gray-700 leading-relaxed mb-3">
             ASAR Humanity adalah Lembaga Amil Zakat Nasional yang berbasis
             kemanusiaan yang dikelola secara professional.
           </p>
-          <p class="text-[10px] text-gray-400 italic">
-            <span class="font-bold not-italic text-gray-300">DISCLAIMER!</span>
+          <p class="text-[10px] text-gray-600 italic">
+            <span class="font-bold not-italic text-gray-800">DISCLAIMER!</span>
             Seluruh dana yang disalurkan melalui ASAR Humanity merupakan dana
             yang dimiliki secara sah oleh donatur, berasal dari sumber yang
             halal, serta tidak berkaitan dengan praktik pencucian uang (money
@@ -558,9 +531,9 @@
           </p>
         </div>
 
-        <div class="border-t border-white/10 pt-4">
+        <div class="border-t border-gray-400/30 pt-4">
           <div class="flex items-center justify-between">
-            <p class="text-[10px] text-gray-400">&copy; 2026 Asar Humanity</p>
+            <p class="text-[10px] text-gray-600">&copy; 2026 Asar Humanity</p>
             <div id="footerSocials" class="flex gap-2">
               <!-- Rendered by JS -->
             </div>
@@ -730,6 +703,48 @@
       });
 
       // ============================================================
+      // SWIPER INIT
+      // ============================================================
+      const packagesSwiper = new Swiper(".packagesSwiper", {
+        slidesPerView: "auto",
+        spaceBetween: 16,
+        grabCursor: true,
+        freeMode: true,
+        observer: true,
+        observeParents: true,
+        pagination: {
+          el: ".packagesSwiper .swiper-pagination",
+          clickable: true,
+        },
+      });
+
+      const testimoniSwiper = new Swiper(".testimoniSwiper", {
+        slidesPerView: "auto",
+        spaceBetween: 12,
+        grabCursor: true,
+        freeMode: true,
+        observer: true,
+        observeParents: true,
+        pagination: {
+          el: ".testimoniSwiper .swiper-pagination",
+          clickable: true,
+        },
+      });
+
+      const gallerySwiper = new Swiper(".gallerySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 12,
+        grabCursor: true,
+        loop: true,
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: false,
+        },
+        observer: true,
+        observeParents: true,
+      });
+
+      // ============================================================
       // FETCH API & RENDER
       // ============================================================
       fetch(API_URL)
@@ -740,18 +755,10 @@
           const wa = d.whatsapp_number || "6281282002018";
 
           // ----- WhatsApp links -----
-          document.getElementById("headerWaLink").href = waUrl(wa);
+          // document.getElementById("headerWaLink").href = waUrl(wa);
           document.getElementById("bottomNavWa").href = waUrl(wa);
 
           // ----- Hero -----
-          if (d.hero_image_url) {
-            document.getElementById("heroImage").src = d.hero_image_url;
-          }
-          document.getElementById("heroTitle").textContent =
-            d.hero_title || d.title || "";
-          document.getElementById("heroSubtitle").innerHTML = escapeHtml(
-            d.hero_subtitle || d.description || "",
-          );
           if (d.hero_cta_url) {
             document.getElementById("heroCtaBtn").href = d.hero_cta_url;
           }
@@ -763,46 +770,22 @@
           // ----- Statistics (Rekap) -----
           const stats = d.statistics;
           if (stats) {
-            const year = stats.rekap_year || "";
-            document.getElementById("rekapTitle").textContent =
-              "Rekap Qurban " + year;
-            document.getElementById("statKK").textContent = fmt(
-              stats.kk_tersalurkan,
-            );
-            document.getElementById("statPeternak").textContent = fmt(
-              stats.peternak_lokal,
-            );
-            document.getElementById("statKambing").textContent = fmt(
-              stats.ekor_kambing,
-            );
-            document.getElementById("statSapi").textContent = fmt(
-              stats.ekor_sapi,
-            );
-
-            // Sebaran
-            document.getElementById("sebaranYear").textContent =
-              "Tahun " + (stats.sebaran_year || "");
-            document.getElementById("sebaranHewan").textContent = fmt(
+            document.getElementById("statHewan").textContent = fmt(
               stats.total_hewan_qurban,
             );
-            document.getElementById("sebaranNegara").textContent = fmt(
+            document.getElementById("statNegara").textContent = fmt(
               stats.total_negara,
             );
-            document.getElementById("sebaranPequrban").textContent = fmt(
-              stats.total_pequrban,
-            );
-            document.getElementById("sebaranProvinsi").textContent = fmt(
+            document.getElementById("statProvinsi").textContent = fmt(
               stats.total_provinsi,
+            );
+            document.getElementById("statPenerima").textContent = fmt(
+              stats.penerima_manfaat,
             );
 
             if (stats.map_image_url) {
               document.getElementById("mapImage").src = stats.map_image_url;
             }
-          }
-
-          // ----- Distribution Areas -----
-          if (d.distribution_areas && Array.isArray(d.distribution_areas)) {
-            renderDistributionAreas(d.distribution_areas);
           }
 
           // ----- Packages (Slider) -----
@@ -811,21 +794,25 @@
           // ----- Testimonials -----
           renderTestimonials(d.testimonials || []);
 
-          // ----- Gallery -----
-          if (d.gallery_image_url) {
-            document.getElementById("galeriSection").style.display = "";
-            document.getElementById("galleryImage").src = d.gallery_image_url;
-          }
+          // ----- Gallery (Multi-Image Swiper) -----
+          renderGallery(d.galleries || []);
 
           // ----- Video -----
           if (d.video_url) {
             document.getElementById("videoSection").style.display = "";
-            document.getElementById("videoIframe").src = d.video_url;
+            // Convert YouTube watch URL to embed URL
+            let videoSrc = d.video_url;
+            const ytMatch = videoSrc.match(
+              /(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/,
+            );
+            if (ytMatch)
+              videoSrc = "https://www.youtube.com/embed/" + ytMatch[1];
+            document.getElementById("videoIframe").src = videoSrc;
             document.getElementById("videoTitle").textContent =
               d.video_title || "";
-            document.getElementById("videoDescription").innerHTML = escapeHtml(
-              d.video_description || "",
-            );
+            // video_description is CKEditor HTML — render as innerHTML
+            document.getElementById("videoDescription").innerHTML =
+              d.video_description || "";
             document.getElementById("videoCaption").textContent =
               d.video_caption || "";
             document.getElementById("videoSubcaption").textContent =
@@ -870,7 +857,8 @@
         const slider = document.getElementById("packagesSlider");
         if (!packages.length) {
           slider.innerHTML =
-            '<p class="text-gray-400 text-sm px-4">Belum ada paket.</p>';
+            '<div class="swiper-slide"><p class="text-gray-400 text-sm">Belum ada paket.</p></div>';
+          packagesSwiper.update();
           return;
         }
 
@@ -892,7 +880,7 @@
               waUrl(wa, pkg.whatsapp_text || "Saya ingin qurban " + pkg.name);
 
             let priceHtml = "";
-            if (pkg.original_price) {
+            if (pkg.original_price && Number(pkg.original_price) !== 0) {
               priceHtml +=
                 '<span class="text-sm text-red-400 line-through">Rp ' +
                 fmt(pkg.original_price) +
@@ -919,7 +907,7 @@
             }
 
             return (
-              '<div class="min-w-[300px] max-w-[320px] flex-shrink-0">' +
+              '<div class="swiper-slide" style="width:80vw;max-width:320px">' +
               '  <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover">' +
               '    <div class="relative">' +
               '      <img src="' +
@@ -936,6 +924,9 @@
                 : "") +
               "    </div>" +
               '    <div class="p-4">' +
+              '      <h3 class="font-bold text-sm text-gray-800 mb-2">' +
+              escapeHtml(pkg.name) +
+              "</h3>" +
               '      <div class="flex items-baseline gap-2 mb-1">' +
               priceHtml +
               "</div>" +
@@ -950,6 +941,12 @@
                   "</p>"
                 : "") +
               featuresHtml +
+              // description is CKEditor HTML — render raw
+              (pkg.description
+                ? '<div class="text-xs text-gray-600 mb-3 leading-relaxed ck-content">' +
+                  pkg.description +
+                  "</div>"
+                : "") +
               '      <a href="' +
               ctaUrl +
               '" target="_blank" class="block bg-primary hover:bg-primary-dark text-white font-semibold py-3 rounded-lg text-center text-sm transition">QURBAN SEKARANG</a>' +
@@ -962,6 +959,8 @@
             );
           })
           .join("");
+
+        packagesSwiper.update();
       }
 
       function renderTestimonials(items) {
@@ -992,11 +991,12 @@
                 "</div>";
 
             return (
-              '<div class="bg-white rounded-xl p-4 shadow-sm min-w-[280px] max-w-[300px] flex-shrink-0">' +
-              '  <div class="flex items-center gap-3 mb-3">' +
+              '<div class="swiper-slide" style="width:280px;max-width:300px">' +
+              '  <div class="bg-white rounded-xl p-4 shadow-sm h-full">' +
+              '    <div class="flex items-center gap-3 mb-3">' +
               photoHtml +
-              "    <div>" +
-              '      <h4 class="font-bold text-sm text-gray-800">' +
+              "      <div>" +
+              '        <h4 class="font-bold text-sm text-gray-800">' +
               escapeHtml(t.name) +
               "</h4>" +
               (t.role
@@ -1004,15 +1004,62 @@
                   escapeHtml(t.role) +
                   "</p>"
                 : "") +
+              "      </div>" +
               "    </div>" +
+              // content is plain text (no CKEditor)
+              '    <p class="text-xs text-gray-600 leading-tight italic">' +
+              "&quot;" +
+              (t.content || "") +
+              "&quot;" +
+              "</p>" +
               "  </div>" +
-              '  <p class="text-xs text-gray-600 leading-relaxed">"' +
-              escapeHtml(t.content) +
-              '"</p>' +
               "</div>"
             );
           })
           .join("");
+
+        testimoniSwiper.update();
+      }
+
+      function renderGallery(items) {
+        const section = document.getElementById("galeriSection");
+        const slider = document.getElementById("gallerySlider");
+
+        if (!items.length) {
+          section.style.display = "none";
+          return;
+        }
+
+        section.style.display = "";
+
+        slider.innerHTML = items
+          .map((img) => {
+            const src =
+              img.image_url || "https://placehold.co/480x270?text=Gallery";
+            const caption = img.caption || "";
+            return (
+              '<div class="swiper-slide">' +
+              '  <div class="bg-white rounded-xl shadow-sm overflow-hidden">' +
+              '    <img src="' +
+              src +
+              '" alt="' +
+              escapeHtml(caption) +
+              '"' +
+              '         class="w-full h-56 object-cover" />' +
+              (caption
+                ? '    <div class="px-4 py-2">' +
+                  '      <p class="text-xs text-gray-500">' +
+                  escapeHtml(caption) +
+                  "</p>" +
+                  "    </div>"
+                : "") +
+              "  </div>" +
+              "</div>"
+            );
+          })
+          .join("");
+
+        gallerySwiper.update();
       }
 
       function renderFaqs(items) {
@@ -1031,38 +1078,12 @@
               escapeHtml(faq.question) +
               '    <span class="text-primary text-lg group-open:rotate-45 transition-transform duration-200">+</span>' +
               "  </summary>" +
-              '  <div class="px-4 pb-4 text-gray-600 text-xs leading-relaxed">' +
-              escapeHtml(faq.answer) +
+              // answer is CKEditor HTML — render raw
+              '  <div class="px-4 pb-4 text-gray-600 text-xs leading-relaxed ck-content">' +
+              (faq.answer || "") +
               "  </div>" +
               "</details>",
           )
-          .join("");
-      }
-
-      function renderDistributionAreas(areas) {
-        const grid = document.getElementById("distributionGrid");
-        if (!areas.length) return;
-
-        grid.innerHTML = areas
-          .map((area) => {
-            const locations = area.locations || [];
-            return (
-              "<div" +
-              (area.col_span === 2 ? ' class="col-span-2"' : "") +
-              ">" +
-              '<p class="font-bold text-primary mb-1">' +
-              escapeHtml(area.region) +
-              "</p>" +
-              '<ul class="space-y-0.5 text-gray-600' +
-              (area.col_span === 2 ? " columns-2" : "") +
-              '">' +
-              locations
-                .map((loc) => "<li>" + escapeHtml(loc) + "</li>")
-                .join("") +
-              "</ul>" +
-              "</div>"
-            );
-          })
           .join("");
       }
 
@@ -1071,7 +1092,10 @@
         if (d.facebook_url)
           socials.push({ url: d.facebook_url, icon: "fa-facebook" });
         if (d.instagram_url)
-          socials.push({ url: d.instagram_url, icon: "fa-instagram" });
+          socials.push({
+            url: d.instagram_url,
+            icon: "fa-instagram",
+          });
         if (d.youtube_url)
           socials.push({ url: d.youtube_url, icon: "fa-youtube" });
         if (d.tiktok_url)
