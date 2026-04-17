@@ -283,32 +283,36 @@
         <!-- Rekap stats cards -->
         <div class="px-4 -mt-1 pt-5 pb-2">
           <h2 id="rekapTitle" class="text-lg font-bold text-primary mb-3 px-1">
-            Rekap Qurban
+            Rekap Qurban Asar Humanity
           </h2>
           <div class="grid grid-cols-2 gap-3">
             <div class="bg-white rounded-xl p-4 shadow-sm text-center">
-              <i class="fas fa-map text-primary text-xl mb-2"></i>
-              <h3 id="statKK" class="text-xl font-bold text-gray-800">-</h3>
-              <p class="text-xs text-gray-500 mt-1">KK Tersalurkan</p>
+              <div
+                class="flex justify-center items-center gap-1 mb-2 text-xl leading-none"
+              >
+                <i class="fas fa-cow text-primary"></i>
+              </div>
+              <h3 id="statHewan" class="text-xl font-bold text-gray-800">-</h3>
+              <p class="text-xs text-gray-500 mt-1">Hewan Qurban Terkumpul</p>
             </div>
             <div class="bg-white rounded-xl p-4 shadow-sm text-center">
-              <i class="fas fa-user-friends text-primary text-xl mb-2"></i>
-              <h3 id="statPeternak" class="text-xl font-bold text-gray-800">
+              <i class="fas fa-globe text-primary text-xl mb-2"></i>
+              <h3 id="statNegara" class="text-xl font-bold text-gray-800">-</h3>
+              <p class="text-xs text-gray-500 mt-1">Negara</p>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm text-center">
+              <i class="fas fa-map-marker-alt text-primary text-xl mb-2"></i>
+              <h3 id="statProvinsi" class="text-xl font-bold text-gray-800">
                 -
               </h3>
-              <p class="text-xs text-gray-500 mt-1">Peternak Lokal</p>
+              <p class="text-xs text-gray-500 mt-1">Provinsi</p>
             </div>
             <div class="bg-white rounded-xl p-4 shadow-sm text-center">
-              <i class="fas fa-dove text-primary text-xl mb-2"></i>
-              <h3 id="statKambing" class="text-xl font-bold text-gray-800">
+              <i class="fas fa-users text-primary text-xl mb-2"></i>
+              <h3 id="statPenerima" class="text-xl font-bold text-gray-800">
                 -
               </h3>
-              <p class="text-xs text-gray-500 mt-1">Ekor Kambing</p>
-            </div>
-            <div class="bg-white rounded-xl p-4 shadow-sm text-center">
-              <i class="fas fa-horse text-primary text-xl mb-2"></i>
-              <h3 id="statSapi" class="text-xl font-bold text-gray-800">-</h3>
-              <p class="text-xs text-gray-500 mt-1">Ekor Sapi</p>
+              <p class="text-xs text-gray-500 mt-1">Penerima Manfaat</p>
             </div>
           </div>
         </div>
@@ -355,77 +359,14 @@
 
       <!-- ===== PETA SEBARAN ===== -->
       <section id="sebaran" class="bg-white px-4 py-8">
-        <h2 class="text-lg font-bold text-accent mb-1">Peta Sebaran Wilayah</h2>
-        <p id="sebaranYear" class="text-xs text-gray-500 mb-5"></p>
-
-        <!-- Stats row -->
-        <div class="grid grid-cols-2 gap-3 mb-5">
-          <div class="bg-gray-50 rounded-lg p-3 flex items-center gap-2">
-            <i class="fas fa-horse text-primary"></i>
-            <div>
-              <span id="sebaranHewan" class="text-lg font-bold text-gray-800"
-                >-</span
-              >
-              <p class="text-[10px] text-gray-500 leading-tight">
-                Hewan Qurban
-              </p>
-            </div>
-          </div>
-          <div class="bg-gray-50 rounded-lg p-3 flex items-center gap-2">
-            <i class="fas fa-globe text-primary"></i>
-            <div>
-              <span id="sebaranNegara" class="text-lg font-bold text-gray-800"
-                >-</span
-              >
-              <p class="text-[10px] text-gray-500 leading-tight">Negara</p>
-            </div>
-          </div>
-          <div class="bg-gray-50 rounded-lg p-3 flex items-center gap-2">
-            <i class="fas fa-users text-primary"></i>
-            <div>
-              <span id="sebaranPequrban" class="text-lg font-bold text-gray-800"
-                >-</span
-              >
-              <p class="text-[10px] text-gray-500 leading-tight">Pequrban</p>
-            </div>
-          </div>
-          <div class="bg-gray-50 rounded-lg p-3 flex items-center gap-2">
-            <i class="fas fa-map-marked-alt text-primary"></i>
-            <div>
-              <span id="sebaranProvinsi" class="text-lg font-bold text-gray-800"
-                >-</span
-              >
-              <p class="text-[10px] text-gray-500 leading-tight">Provinsi</p>
-            </div>
-          </div>
-        </div>
+        <h2 class="text-lg font-bold text-accent mb-4">Peta Sebaran Wilayah</h2>
 
         <img
           id="mapImage"
           src="https://placehold.co/480x240?text=Peta+Dunia"
           alt="Peta Sebaran Global"
-          class="w-full rounded-xl mb-6"
+          class="w-full rounded-xl"
         />
-
-        <!-- Distribusi Indonesia (rendered from API distribution_areas) -->
-        <div id="distributionAreas" class="bg-gray-50 rounded-xl p-4 mb-4">
-          <div class="flex items-center gap-3 mb-4">
-            <div
-              class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center"
-            >
-              <i class="fas fa-map-marked-alt text-primary text-xl"></i>
-            </div>
-            <h3 class="text-base font-bold text-primary">
-              Wilayah Distribusi SBQ
-            </h3>
-          </div>
-          <div
-            id="distributionGrid"
-            class="grid grid-cols-2 gap-x-4 gap-y-3 text-xs text-gray-700"
-          >
-            <!-- Rendered by JS -->
-          </div>
-        </div>
       </section>
 
       <!-- ===== TESTIMONI ===== -->
@@ -818,13 +759,6 @@
           document.getElementById("bottomNavWa").href = waUrl(wa);
 
           // ----- Hero -----
-          // if (d.hero_image_url) {
-          //   document.getElementById("heroImage").src = d.hero_image_url;
-          // }
-          // document.getElementById("heroTitle").textContent = d.hero_title || "";
-          // // hero_subtitle is CKEditor HTML — render as innerHTML
-          // document.getElementById("heroSubtitle").innerHTML =
-          //   d.hero_subtitle || "";
           if (d.hero_cta_url) {
             document.getElementById("heroCtaBtn").href = d.hero_cta_url;
           }
@@ -836,46 +770,22 @@
           // ----- Statistics (Rekap) -----
           const stats = d.statistics;
           if (stats) {
-            const year = stats.rekap_year || "";
-            document.getElementById("rekapTitle").textContent =
-              "Rekap Qurban " + year;
-            document.getElementById("statKK").textContent = fmt(
-              stats.kk_tersalurkan,
-            );
-            document.getElementById("statPeternak").textContent = fmt(
-              stats.peternak_lokal,
-            );
-            document.getElementById("statKambing").textContent = fmt(
-              stats.ekor_kambing,
-            );
-            document.getElementById("statSapi").textContent = fmt(
-              stats.ekor_sapi,
-            );
-
-            // Sebaran
-            document.getElementById("sebaranYear").textContent =
-              "Tahun " + (stats.sebaran_year || "");
-            document.getElementById("sebaranHewan").textContent = fmt(
+            document.getElementById("statHewan").textContent = fmt(
               stats.total_hewan_qurban,
             );
-            document.getElementById("sebaranNegara").textContent = fmt(
+            document.getElementById("statNegara").textContent = fmt(
               stats.total_negara,
             );
-            document.getElementById("sebaranPequrban").textContent = fmt(
-              stats.total_pequrban,
-            );
-            document.getElementById("sebaranProvinsi").textContent = fmt(
+            document.getElementById("statProvinsi").textContent = fmt(
               stats.total_provinsi,
+            );
+            document.getElementById("statPenerima").textContent = fmt(
+              stats.penerima_manfaat,
             );
 
             if (stats.map_image_url) {
               document.getElementById("mapImage").src = stats.map_image_url;
             }
-          }
-
-          // ----- Distribution Areas -----
-          if (d.distribution_areas && Array.isArray(d.distribution_areas)) {
-            renderDistributionAreas(d.distribution_areas);
           }
 
           // ----- Packages (Slider) -----
@@ -1177,39 +1087,15 @@
           .join("");
       }
 
-      function renderDistributionAreas(areas) {
-        const grid = document.getElementById("distributionGrid");
-        if (!areas.length) return;
-
-        grid.innerHTML = areas
-          .map((area) => {
-            const locations = area.locations || [];
-            return (
-              "<div" +
-              (area.col_span === 2 ? ' class="col-span-2"' : "") +
-              ">" +
-              '<p class="font-bold text-primary mb-1">' +
-              escapeHtml(area.region) +
-              "</p>" +
-              '<ul class="space-y-0.5 text-gray-600' +
-              (area.col_span === 2 ? " columns-2" : "") +
-              '">' +
-              locations
-                .map((loc) => "<li>" + escapeHtml(loc) + "</li>")
-                .join("") +
-              "</ul>" +
-              "</div>"
-            );
-          })
-          .join("");
-      }
-
       function renderSocials(d) {
         const socials = [];
         if (d.facebook_url)
           socials.push({ url: d.facebook_url, icon: "fa-facebook" });
         if (d.instagram_url)
-          socials.push({ url: d.instagram_url, icon: "fa-instagram" });
+          socials.push({
+            url: d.instagram_url,
+            icon: "fa-instagram",
+          });
         if (d.youtube_url)
           socials.push({ url: d.youtube_url, icon: "fa-youtube" });
         if (d.tiktok_url)
