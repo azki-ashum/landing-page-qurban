@@ -1035,7 +1035,7 @@
         slider.innerHTML = items
           .map((img) => {
             const src =
-              img.image_url || "https://placehold.co/480x270?text=Gallery";
+              img.image_url || "https://placehold.co/1080x540?text=Gallery";
             const caption = img.caption || "";
             return (
               '<div class="swiper-slide">' +
@@ -1045,7 +1045,7 @@
               '" alt="' +
               escapeHtml(caption) +
               '"' +
-              '         class="w-full h-56 object-cover" />' +
+              '         class="w-full aspect-[2/1] object-cover min-h-80" />' +
               (caption
                 ? '    <div class="px-4 py-2">' +
                   '      <p class="text-xs text-gray-500">' +
