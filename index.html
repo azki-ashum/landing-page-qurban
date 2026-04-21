@@ -181,6 +181,18 @@
         color: #1a4b3c;
         text-decoration: underline;
       }
+
+      /* Equalize package card heights */
+      .packagesSwiper .swiper-slide {
+        display: flex;
+        height: auto;
+      }
+
+      .packagesSwiper .swiper-slide > div {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
     </style>
   </head>
 
@@ -917,7 +929,7 @@
 
             return (
               '<div class="swiper-slide" style="width:80vw;max-width:320px">' +
-              '  <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover">' +
+              '  <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover h-full flex flex-col">' +
               '    <div class="relative">' +
               '      <img src="' +
               imgSrc +
@@ -932,11 +944,12 @@
                   "</span>"
                 : "") +
               "    </div>" +
-              '    <div class="p-4">' +
-              '      <h3 class="font-bold text-sm text-gray-800 mb-2">' +
+              '    <div class="p-4 flex flex-col flex-grow">' +
+              '      <div class="flex-grow">' +
+              '        <h3 class="font-bold text-sm text-gray-800 mb-2">' +
               escapeHtml(pkg.name) +
               "</h3>" +
-              '      <div class="flex items-baseline gap-2 mb-1">' +
+              '        <div class="flex items-baseline gap-2 mb-1">' +
               priceHtml +
               "</div>" +
               (pkg.dp_amount
@@ -955,12 +968,15 @@
                   pkg.description +
                   "</div>"
                 : "") +
-              '      <a href="' +
+              "      </div>" +
+              '      <div class="mt-auto pt-2">' +
+              '        <a href="' +
               ctaUrl +
               '" target="_blank" class="block bg-primary hover:bg-primary-dark text-white font-semibold py-3 rounded-lg text-center text-sm transition">QURBAN SEKARANG</a>' +
-              '      <a href="' +
+              '        <a href="' +
               waUrl(wa) +
               '" target="_blank" class="block text-accent hover:underline font-semibold text-center text-xs mt-2 py-1"><i class="fab fa-whatsapp mr-1"></i> Chat dengan CS</a>' +
+              "      </div>" +
               "    </div>" +
               "  </div>" +
               "</div>"
